@@ -1,0 +1,324 @@
+/* ============================================
+   INTRO SECTION STYLES
+   ============================================ */
+
+.intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  position: relative;
+}
+
+.intro-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Text Content */
+.intro-text {
+  max-width: 600px;
+}
+
+.intro-greeting {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.intro-name {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro-dot {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+}
+
+.intro-nickname {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.intro-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.intro-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* CTA Buttons */
+.intro-cta {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.intro-cta .btn {
+  min-width: 160px;
+}
+
+.intro-cta .btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.intro-cta .btn:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Illustration / Headshot Area */
+.intro-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.illustration-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background SVG shapes - floating behind the image */
+.background-shapes {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Headshot Container - centered over background */
+.headshot-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Headshot Image - Sticker outline effect using drop-shadow */
+.headshot-image {
+  width: 900px;
+  max-width: 95vw;
+  height: auto;
+  object-fit: contain;
+  /* Sticker outline - 5px solid border following the shape */
+  filter: 
+    drop-shadow(5px 0 0 var(--primary)) 
+    drop-shadow(-5px 0 0 var(--primary)) 
+    drop-shadow(0 5px 0 var(--primary)) 
+    drop-shadow(0 -5px 0 var(--primary))
+    drop-shadow(0 10px 30px color-mix(in srgb, var(--primary) 30%, transparent));
+  /* Float animation */
+  animation: floatImage 4s ease-in-out infinite;
+  transition: filter 0.4s ease;
+}
+
+.headshot-image:hover {
+  filter: 
+    drop-shadow(6px 0 0 var(--secondary)) 
+    drop-shadow(-6px 0 0 var(--secondary)) 
+    drop-shadow(0 6px 0 var(--secondary)) 
+    drop-shadow(0 -6px 0 var(--secondary))
+    drop-shadow(0 15px 40px color-mix(in srgb, var(--secondary) 40%, transparent));
+}
+
+/* Float animation for the image */
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Floating shapes in SVG */
+.float-shape {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-shape.delay-1 {
+  animation-delay: -2s;
+}
+
+.float-shape.delay-2 {
+  animation-delay: -4s;
+}
+
+/* Floating decorative elements */
+.floating-element {
+  position: absolute;
+  pointer-events: none;
+}
+
+.elem-1 {
+  top: 10%;
+  right: 10%;
+  animation: float 5s ease-in-out infinite;
+}
+
+.elem-2 {
+  bottom: 20%;
+  left: 5%;
+  animation: float 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.elem-3 {
+  top: 60%;
+  right: 5%;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px 20px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.scroll-indicator:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-md);
+  color: var(--primary);
+}
+
+.scroll-arrow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow svg {
+  stroke: var(--primary);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .intro-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .intro-text {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .intro-illustration {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .illustration-wrapper {
+    max-width: 100%;
+    min-height: auto;
+    margin: 0 auto;
+  }
+
+  .headshot-image {
+    width: 100%;
+    max-width: 90vw;
+    filter: 
+      drop-shadow(4px 0 0 var(--primary)) 
+      drop-shadow(-4px 0 0 var(--primary)) 
+      drop-shadow(0 4px 0 var(--primary)) 
+      drop-shadow(0 -4px 0 var(--primary))
+      drop-shadow(0 8px 25px color-mix(in srgb, var(--primary) 25%, transparent));
+  }
+
+  .intro-cta {
+    justify-content: center;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro {
+    padding: 100px 0 60px;
+  }
+
+  .illustration-wrapper {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .headshot-image {
+    width: 100%;
+    max-width: 95vw;
+    filter: 
+      drop-shadow(3px 0 0 var(--primary)) 
+      drop-shadow(-3px 0 0 var(--primary)) 
+      drop-shadow(0 3px 0 var(--primary)) 
+      drop-shadow(0 -3px 0 var(--primary))
+      drop-shadow(0 6px 20px color-mix(in srgb, var(--primary) 20%, transparent));
+  }
+
+  .intro-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intro-cta .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+
+
