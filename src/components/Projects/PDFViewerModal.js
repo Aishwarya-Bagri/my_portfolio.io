@@ -64,7 +64,7 @@ function PDFViewerModal({ project, onClose }) {
           <h3>{project.name}</h3>
           <div className="modal-actions">
             <a
-              href={project.pdfUrl}
+              href={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
               download
               className="modal-btn"
               title="Download PDF"
@@ -73,7 +73,7 @@ function PDFViewerModal({ project, onClose }) {
               <FaDownload />
             </a>
             <a
-              href={project.pdfUrl}
+              href={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
               target="_blank"
               rel="noopener noreferrer"
               className="modal-btn"
@@ -102,7 +102,7 @@ function PDFViewerModal({ project, onClose }) {
           )}
           
           <Document
-            file={project.pdfUrl}
+            file={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={onDocumentLoadError}
             loading={null}

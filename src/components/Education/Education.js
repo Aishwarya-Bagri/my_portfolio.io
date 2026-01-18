@@ -64,7 +64,7 @@ function Education() {
             >
               {/* Logo */}
               <div className="edu-logo">
-                <img src={edu.logo} alt={edu.university} />
+                <img src={`${process.env.PUBLIC_URL}${edu.logo}`} alt={edu.university} />
               </div>
 
               {/* Content */}

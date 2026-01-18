@@ -57,7 +57,7 @@ function Experience() {
               {/* Floating Logo */}
               <div className="logo-wrapper">
                 <div className="logo-circle">
-                  <img src={exp.logo} alt={exp.company} />
+                  <img src={`${process.env.PUBLIC_URL}${exp.logo}`} alt={exp.company} />
                 </div>
               </div>
 

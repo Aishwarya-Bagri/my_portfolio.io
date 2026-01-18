@@ -114,7 +114,7 @@ function Intro() {
               {/* Headshot Image */}
               <div className="headshot-container">
                 <img 
-                  src="/images/headshot.png" 
+                  src={`${process.env.PUBLIC_URL}/images/headshot.png`}
                   alt="Aishwarya" 
                   className="headshot-image"
                 />

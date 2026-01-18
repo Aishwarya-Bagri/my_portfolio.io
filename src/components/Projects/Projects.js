@@ -77,7 +77,7 @@ function Projects() {
                 {/* Thumbnail - Auto-generated from PDF first page */}
                 <div className="project-thumbnail">
                   <PDFThumbnail 
-                    pdfUrl={project.pdfUrl}
+                    pdfUrl={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
                     projectColor={projectColor}
                     projectName={project.name}
                   />
@@ -98,7 +98,7 @@ function Projects() {
                   {/* Quick Actions */}
                   <div className="quick-actions">
                     <a
-                      href={project.pdfUrl}
+                      href={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="quick-btn"

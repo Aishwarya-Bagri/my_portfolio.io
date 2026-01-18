@@ -38,7 +38,7 @@ function Footer() {
             <ul>
               <li><a href="#intro">Home</a></li>
               <li><a href="#projects">Projects</a></li>
-              <li><a href={personalInfo.resumeLink} target="_blank" rel="noopener noreferrer">Resume</a></li>
+              <li><a href={`${process.env.PUBLIC_URL}${personalInfo.resumeLink}`} target="_blank" rel="noopener noreferrer">Resume</a></li>
             </ul>
           </div>
 

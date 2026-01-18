@@ -70,7 +70,7 @@ function Header() {
               transition={{ delay: navLinks.length * 0.1 }}
             >
               <a
-                href={resumeLink}
+                href={`${process.env.PUBLIC_URL}${resumeLink}`}
                 className="nav-link nav-btn"
                 target="_blank"
                 rel="noopener noreferrer"
