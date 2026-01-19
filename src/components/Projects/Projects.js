@@ -4,10 +4,113 @@ import { FaFilePdf, FaExpand, FaChevronDown, FaChevronUp, FaExternalLinkAlt } fr
 import { projects } from '../../data/portfolio';
 import { useTheme } from '../../theme/ThemeContext';
 import PDFThumbnail from './PDFThumbnail';
+import HeroProject from './HeroProject';
 import './Projects.css';
 
 // Lazy load PDF Viewer component - only loads when user clicks
 const PDFViewerModal = lazy(() => import('./PDFViewerModal'));
+
+// Project Card Component with Read More functionality
+function ProjectCard({ project, projectColor, onOpenViewer }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Format description with bullet points
+  const formatDescription = (desc) => {
+    return desc.split('\n').map((line, i) => (
+      <span key={i} className="desc-line">
+        {line}
+        {i < desc.split('\n').length - 1 && <br />}
+      </span>
+    ));
+  };
+
+  return (
+    <motion.div
+      className="project-card"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      whileHover={{ y: -8 }}
+    >
+      {/* Thumbnail - Auto-generated from PDF first page */}
+      <div className="project-thumbnail" onClick={() => onOpenViewer(project)}>
+        <PDFThumbnail 
+          pdfUrl={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
+          projectColor={projectColor}
+          projectName={project.name}
+        />
+        
+        {/* Hover Overlay */}
+        <div className="thumbnail-overlay">
+          <div className="overlay-content">
+            <FaExpand className="expand-icon" />
+            <span>View Document</span>
+          </div>
+        </div>
+
+        {/* PDF Badge */}
+        <div className="pdf-badge" style={{ backgroundColor: projectColor }}>
+          <FaFilePdf /> PDF
+        </div>
+
+        {/* Quick Actions */}
+        <div className="quick-actions">
+          <a
+            href={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quick-btn"
+            title="Open in new tab"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <FaExternalLinkAlt />
+          </a>
+        </div>
+      </div>
+
+      {/* Project Content */}
+      <div className="project-content">
+        <h3 className="project-name" onClick={() => onOpenViewer(project)}>{project.name}</h3>
+        
+        {/* Description with Read More */}
+        <div className={`project-description ${isExpanded ? 'expanded' : 'collapsed'}`}>
+          {formatDescription(project.description)}
+        </div>
+        
+        {/* Read More Toggle */}
+        <button 
+          className="read-more-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
+        >
+          {isExpanded ? (
+            <>Read Less <FaChevronUp /></>
+          ) : (
+            <>Read More <FaChevronDown /></>
+          )}
+        </button>
+        
+        {/* Tags */}
+        <div className="project-tags">
+          {project.tags.map((tag, i) => (
+            <span 
+              key={i} 
+              className="tag"
+              style={{ 
+                backgroundColor: `${projectColor}15`,
+                color: projectColor
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 function Projects() {
   const { theme } = useTheme();
@@ -22,9 +125,15 @@ function Projects() {
     theme.gradientEnd,
   ];
 
+  // Filter out hero project PDFs from regular grid (optional - remove if you want them shown)
+  const regularProjects = projects.filter(p => 
+    p.pdfUrl !== '/documents/zomato-batching.pdf' && 
+    p.pdfUrl !== '/documents/data-analytics-batching.pdf'
+  );
+
   const INITIAL_DISPLAY_COUNT = 3;
-  const hasMoreProjects = projects.length > INITIAL_DISPLAY_COUNT;
-  const displayedProjects = showAll ? projects : projects.slice(0, INITIAL_DISPLAY_COUNT);
+  const hasMoreProjects = regularProjects.length > INITIAL_DISPLAY_COUNT;
+  const displayedProjects = showAll ? regularProjects : regularProjects.slice(0, INITIAL_DISPLAY_COUNT);
 
   const openViewer = (project) => {
     setSelectedProject(project);
@@ -55,83 +164,33 @@ function Projects() {
           </p>
         </motion.div>
 
+        {/* Hero Project Section */}
+        <HeroProject />
+
+        {/* Other Projects Header */}
+        {regularProjects.length > 0 && (
+          <motion.h3 
+            className="other-projects-title"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Other Projects
+          </motion.h3>
+        )}
+
         {/* Projects Grid */}
         <div className="projects-grid">
           {displayedProjects.map((project, index) => {
             const projectColor = projectColors[index % projectColors.length];
             
             return (
-              <motion.div
+              <ProjectCard
                 key={project.id}
-                className="project-card"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  ease: 'easeOut' 
-                }}
-                whileHover={{ y: -8 }}
-                onClick={() => openViewer(project)}
-              >
-                {/* Thumbnail - Auto-generated from PDF first page */}
-                <div className="project-thumbnail">
-                  <PDFThumbnail 
-                    pdfUrl={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
-                    projectColor={projectColor}
-                    projectName={project.name}
-                  />
-                  
-                  {/* Hover Overlay */}
-                  <div className="thumbnail-overlay">
-                    <div className="overlay-content">
-                      <FaExpand className="expand-icon" />
-                      <span>View Document</span>
-                    </div>
-                  </div>
-
-                  {/* PDF Badge */}
-                  <div className="pdf-badge" style={{ backgroundColor: projectColor }}>
-                    <FaFilePdf /> PDF
-                  </div>
-
-                  {/* Quick Actions */}
-                  <div className="quick-actions">
-                    <a
-                      href={`${process.env.PUBLIC_URL}${project.pdfUrl}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="quick-btn"
-                      title="Open in new tab"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <FaExternalLinkAlt />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="project-content">
-                  <h3 className="project-name">{project.name}</h3>
-                  <p className="project-description">{project.description}</p>
-                  
-                  {/* Tags */}
-                  <div className="project-tags">
-                    {project.tags.map((tag, i) => (
-                      <span 
-                        key={i} 
-                        className="tag"
-                        style={{ 
-                          backgroundColor: `${projectColor}15`,
-                          color: projectColor
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+                project={project}
+                projectColor={projectColor}
+                onOpenViewer={openViewer}
+              />
             );
           })}
         </div>
@@ -154,7 +213,7 @@ function Projects() {
                 </>
               ) : (
                 <>
-                  View More ({projects.length - INITIAL_DISPLAY_COUNT} more) <FaChevronDown />
+                  View More ({regularProjects.length - INITIAL_DISPLAY_COUNT} more) <FaChevronDown />
                 </>
               )}
             </button>

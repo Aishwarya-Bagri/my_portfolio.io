@@ -1,0 +1,265 @@
+/* ============================================
+   HERO PROJECT SECTION
+   ============================================ */
+
+.hero-project-section {
+  margin-bottom: 80px;
+}
+
+.hero-project-card {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Decorative background elements */
+.hero-project-card::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.hero-project-card::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #e23744 0%, transparent 70%);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.hero-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #1a1a1a;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Title */
+.hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+  line-height: 1.2;
+  position: relative;
+}
+
+.hero-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #e23744, #06b6d4);
+  border-radius: 2px;
+  margin-top: 16px;
+}
+
+/* Three Columns */
+.hero-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.hero-column {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-column:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Column Icons */
+.column-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.problem-icon {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #d97706;
+}
+
+.solution-icon {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #059669;
+}
+
+.impact-icon {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #2563eb;
+}
+
+.hero-column h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.hero-column p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Color accents for columns */
+.hero-column.problem {
+  border-top: 3px solid #f59e0b;
+}
+
+.hero-column.solution {
+  border-top: 3px solid #10b981;
+}
+
+.hero-column.impact {
+  border-top: 3px solid #3b82f6;
+}
+
+/* PDF Buttons */
+.hero-pdf-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-pdf-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  background: var(--bg-primary);
+  border: 2px solid var(--btn-color, var(--primary));
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pdf-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--btn-color, var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-pdf-btn:hover::before {
+  opacity: 0.08;
+}
+
+.hero-pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.hero-pdf-btn .pdf-icon {
+  font-size: 1.5rem;
+  color: var(--btn-color, var(--primary));
+  position: relative;
+  z-index: 1;
+}
+
+.hero-pdf-btn .btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-pdf-btn .btn-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hero-pdf-btn .btn-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 900px) {
+  .hero-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hero-project-card {
+    padding: 32px 24px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-pdf-buttons {
+    flex-direction: column;
+  }
+
+  .hero-pdf-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-project-card {
+    padding: 24px 20px;
+  }
+
+  .hero-column {
+    padding: 20px;
+  }
+}
+

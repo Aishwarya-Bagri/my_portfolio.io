@@ -81,3 +81,4 @@ function adjustColor(color, amount) {
 
 export default PDFThumbnail;
 
+

@@ -95,7 +95,7 @@ export const projects = [
   {
     id: 1,
     name: "Data Analytics Report on Intelligent Multi-Order Batching",
-    description: "Validated a logistics optimization model achieving an 11.3% reduction in delivery costs and a 26.8% batch rate efficiency. Analyzed historical peak-hour data to identify spatial clustering and fleet bottlenecks. Simulated the 'Project Synapse' algorithm to transition from linear to multi-threaded routing. Confirmed customer trust stability with 92% of batched orders maintaining acceptable wait times.",
+    description: "• Problem: Peak hour demand hits 1,034 orders/hr, creating bottlenecks and a high Cost Per Delivery of ₹108.20.\n• Solution: Simulated a 'Naive Greedy' batching algorithm on historical data to group spatially compatible orders.\n• Impact: Validated an 11.3% reduction in delivery costs (to ₹96.01) and saved 926 fleet trips during stress tests.",
     pdfUrl: "/documents/data-analytics-batching.pdf",
     type: "pdf",
     tags: ["Data Analytics", "Logistics Optimization", "Unit Economics", "Zomato"],
@@ -105,7 +105,7 @@ export const projects = [
   {
     id: 2,
     name: "Blinkit Predictive Inventory & Auto-Replenishment",
-    description: "Project Infinity - A predictive inventory management system using ML to forecast demand and automate replenishment decisions for Blinkit's quick-commerce operations.",
+    description: "• Problem: Users frequently run out of daily staples, leading to churn and expensive single-item rush deliveries.\n• Solution: Designed 'The Infinite Fridge,' a feature triggering auto-replenishment notifications based on consumption velocity.\n• Impact: Projected to reduce user stockouts by 40% and increase Average Order Value by 15% via scheduled batching.",
     pdfUrl: "/documents/blinkit-inventory.pdf",
     type: "pdf",
     tags: ["ML", "Inventory", "Quick Commerce", "Blinkit"],
@@ -115,7 +115,7 @@ export const projects = [
   {
     id: 3,
     name: "Zomato Intelligent Multi-Order Batching",
-    description: "Product Requirements Document for an intelligent order batching system that optimizes delivery routes and reduces delivery times through smart order clustering.",
+    description: "• Problem: Inefficient 'One Order = One Driver' routing creates high 'dead miles' and drags down unit economics.\n• Solution: Proposed a 'Multi-Pick, Multi-Drop' batching engine with strict 7-minute freshness guardrails.\n• Impact: Strategy designed to increase Rider Utilization and boost the Batch Rate to 25% without compromising NPS.",
     pdfUrl: "/documents/zomato-batching.pdf",
     type: "pdf",
     tags: ["PRD", "Logistics", "Optimization", "Zomato"],
@@ -125,7 +125,7 @@ export const projects = [
   {
     id: 4,
     name: "GTM Strategy for Electronics Brand in Nepal",
-    description: "A comprehensive Go-To-Market strategy for launching and scaling an electronics brand in the Nepalese market. Covers market analysis, competitive landscape, and growth tactics.",
+    description: "• Problem: A lack of quality, affordable mid-range TWS audio products for Nepal's digitally active youth demographic.\n• Solution: Developed a digital-first launch strategy for 'SonicPods' leveraging campus ambassadors and influencer marketing.\n• Impact: Launch plan targeted 100k digital reach in 30 days and 500+ initial conversions via penetration pricing.",
     pdfUrl: "/documents/gtm-nepal.pdf",
     type: "pdf",
     tags: ["Strategy", "Market Entry", "Electronics"],
@@ -135,7 +135,7 @@ export const projects = [
   {
     id: 5,
     name: "GTM Strategy for JIO Expansion in Africa",
-    description: "Strategic framework for JIO's expansion into African markets. Includes market opportunity assessment, regulatory considerations, and implementation roadmap.",
+    description: "• Problem: Africa has low internet penetration (38%) but a massive youth population needing affordable data.\n• Solution: Formulated a low-cost entry strategy ($2.50 ARPU) bundling connectivity with fintech and education ecosystems.\n• Impact: Defined a strategic roadmap to acquire 30 million subscribers in 3 years across Nigeria, Kenya, and South Africa.",
     pdfUrl: "/documents/gtm-jio-africa.pdf",
     type: "pdf",
     tags: ["Strategy", "Telecom", "Africa"],
@@ -149,7 +149,7 @@ export const experiences = [
   {
     id: "internshala-ops",
     company: "Internshala",
-    role: "Associate - Operations",
+    role: "Associate - Product Operations",
     date: "Apr 2024 – Jun 2025",
     themeColor: "#00a5ec",
     logo: "/logos/internshala.png",

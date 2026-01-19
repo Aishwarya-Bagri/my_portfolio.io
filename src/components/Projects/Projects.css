@@ -259,11 +259,67 @@
   font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+}
+
+/* Collapsed state - truncate to 3 lines */
+.project-description.collapsed {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Expanded state - show all */
+.project-description.expanded {
+  display: block;
+  overflow: visible;
+}
+
+.project-description .desc-line {
+  display: inline;
+}
+
+/* Read More Button */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 14px;
+}
+
+.read-more-btn:hover {
+  color: var(--primary-dark, var(--primary));
+  transform: translateX(2px);
+}
+
+.read-more-btn svg {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+.read-more-btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* Other Projects Title */
+.other-projects-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  margin-top: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--bg-tertiary);
 }
 
 /* Tags */
