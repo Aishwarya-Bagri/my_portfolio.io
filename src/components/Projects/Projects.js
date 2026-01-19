@@ -10,20 +10,26 @@ import './Projects.css';
 // Lazy load PDF Viewer component - only loads when user clicks
 const PDFViewerModal = lazy(() => import('./PDFViewerModal'));
 
-// Project Card Component with Read More functionality
-function ProjectCard({ project, projectColor, onOpenViewer }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  // Format description with bullet points
-  const formatDescription = (desc) => {
-    return desc.split('\n').map((line, i) => (
+// Helper to format description with bold labels
+const formatDescriptionWithBold = (desc) => {
+  return desc.split('\n').map((line, i) => {
+    // Bold the labels: Problem, Solution, Impact
+    let formattedLine = line
+      .replace(/^(•\s*)(Problem:)/i, '$1<strong>$2</strong>')
+      .replace(/^(•\s*)(Solution:)/i, '$1<strong>$2</strong>')
+      .replace(/^(•\s*)(Impact:)/i, '$1<strong>$2</strong>');
+    
+    return (
       <span key={i} className="desc-line">
-        {line}
+        <span dangerouslySetInnerHTML={{ __html: formattedLine }} />
         {i < desc.split('\n').length - 1 && <br />}
       </span>
-    ));
-  };
+    );
+  });
+};
 
+// Project Card Component - Full description display
+function ProjectCard({ project, projectColor, onOpenViewer }) {
   return (
     <motion.div
       className="project-card"
@@ -72,25 +78,10 @@ function ProjectCard({ project, projectColor, onOpenViewer }) {
       <div className="project-content">
         <h3 className="project-name" onClick={() => onOpenViewer(project)}>{project.name}</h3>
         
-        {/* Description with Read More */}
-        <div className={`project-description ${isExpanded ? 'expanded' : 'collapsed'}`}>
-          {formatDescription(project.description)}
+        {/* Full Description */}
+        <div className="project-description">
+          {formatDescriptionWithBold(project.description)}
         </div>
-        
-        {/* Read More Toggle */}
-        <button 
-          className="read-more-btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsExpanded(!isExpanded);
-          }}
-        >
-          {isExpanded ? (
-            <>Read Less <FaChevronUp /></>
-          ) : (
-            <>Read More <FaChevronDown /></>
-          )}
-        </button>
         
         {/* Tags */}
         <div className="project-tags">
