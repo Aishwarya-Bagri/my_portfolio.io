@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { personalInfo } from '../../data/portfolio';
+import { personalInfo, resumeLink } from '../../data/portfolio';
 import { useTheme } from '../../theme/ThemeContext';
 import SocialMedia from '../SocialMedia/SocialMedia';
 import './Intro.css';
@@ -70,6 +70,17 @@ function Intro() {
                 View My Work
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </a>
+              <a 
+                href={`${process.env.PUBLIC_URL}${resumeLink}`} 
+                className="btn btn-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Resume
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M5 12l7 7 7-7" />
                 </svg>
               </a>
             </motion.div>

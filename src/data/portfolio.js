@@ -6,7 +6,7 @@
 export const personalInfo = {
   name: "Aishwarya",
   nickname: null,
-  title: "MBA Candidate | Aspiring Product Manager",
+  title: "MBA - IIM Kashipur | Product Management & Analytics | Business | Strategy",
   subtitle: "Driving operational excellence and product growth through data-driven insights and cross-functional collaboration.",
   email: "aishwarya.mba25125@iimkashipur.ac.in",
   location: "Kashipur, India",
